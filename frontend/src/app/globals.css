@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root,
+html.dark {
+  --site-bg: #07090f;
+  --site-fg: #eef3ff;
+  --site-muted: #93a0bc;
+  --site-card: rgba(255, 255, 255, 0.045);
+  --site-card-solid: #10151f;
+  --site-line: rgba(255, 255, 255, 0.1);
+  --site-accent: #38bdf8;
+  --site-dot: #38bdf8;
+  --site-accent-strong: #0ea5e9;
+  --site-accent-soft: rgba(56, 189, 248, 0.12);
+  --site-success: #34d399;
+  --site-success-soft: rgba(52, 211, 153, 0.12);
+  --site-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+html.light {
+  --site-bg: #f3f5f9;
+  --site-fg: #0b1220;
+  --site-muted: #5b667c;
+  --site-card: #ffffff;
+  --site-card-solid: #ffffff;
+  --site-line: #dbe1ec;
+  --site-accent: #2563eb;
+  --site-dot: #334155;
+  --site-accent-strong: #1d4ed8;
+  --site-accent-soft: #dbeafe;
+  --site-success: #059669;
+  --site-success-soft: #d1fae5;
+  --site-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+@theme inline {
+  --color-background: var(--site-bg);
+  --color-foreground: var(--site-fg);
+  --color-muted: var(--site-muted);
+  --color-card: var(--site-card);
+  --color-line: var(--site-line);
+  --color-accent: var(--site-accent);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7.5rem;
+}
+
+.section-screen {
+  min-height: calc(100svh - 4.5rem);
+  scroll-margin-top: 7.5rem;
+  padding: 5rem 1.15rem 4.5rem;
+}
+
+.section-inner {
+  width: 100%;
+  min-width: 0;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+#skills.section-screen {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 4.5rem);
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+#contact.section-screen {
+  padding-top: 6.5rem;
+}
+
+body {
+  min-height: 100%;
+  background: var(--site-bg);
+  color: var(--site-fg);
+  font-family: var(--font-outfit), sans-serif;
+}
+
+::selection {
+  background: var(--site-accent);
+  color: #041016;
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.grid-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--site-fg) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--site-fg) 6%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at center, black 28%, transparent 78%);
+}
+
+.card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  background: var(--site-card);
+  border: 1px solid var(--site-line);
+  border-radius: 22px;
+  box-shadow: var(--site-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.72rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 550;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.btn-primary {
+  background: var(--site-accent);
+  color: #041016;
+}
+
+html.light .btn-primary {
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--site-accent-strong);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  border: 1px solid var(--site-line);
+  background: color-mix(in oklab, var(--site-card-solid) 80%, transparent);
+  color: var(--site-fg);
+}
+
+.btn-secondary:hover {
+  border-color: color-mix(in oklab, var(--site-accent) 50%, var(--site-line));
+  transform: translateY(-1px);
+}
+
+.field {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--site-line);
+  background: color-mix(in oklab, var(--site-card-solid) 70%, transparent);
+  padding: 0.8rem 1rem;
+  font-size: 0.875rem;
+  color: var(--site-fg);
+  outline: none;
+}
+
+.field:focus {
+  border-color: var(--site-accent);
+  box-shadow: 0 0 0 3px var(--site-accent-soft);
+}
+
+.badge,
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--site-line);
+  background: color-mix(in oklab, var(--site-fg) 4%, transparent);
+  padding: 0.34rem 0.75rem;
+  font-size: 11px;
+  line-height: 1.2;
+  color: var(--site-fg);
+}
+
+.skill-pill {
+  cursor: default;
+  transform-origin: center;
+}
+
+.skill-pill:hover {
+  border-color: color-mix(in oklab, var(--site-accent) 70%, var(--site-line));
+  background: var(--site-accent-soft);
+  color: var(--site-accent);
+  box-shadow: 0 8px 20px color-mix(in oklab, var(--site-accent) 22%, transparent);
+}
